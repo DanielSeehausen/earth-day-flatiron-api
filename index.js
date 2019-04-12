@@ -2,7 +2,6 @@ const express = require('express')
 const config = require('./config')
 
 const validator = require('./src/middleware/validator.js')
-const logger = require('./src/middleware/logger.js')
 const limiter = require('./src/middleware/rateLimiter.js')
 
 const Group = require('./src/app/group.js')
@@ -18,9 +17,6 @@ app.use(validator)
 
 //************************** RATE LIMITER **************************************
 app.use(limiter)
-
-//************************* REQ LOGGER *****************************************
-app.use(logger)
 
 //***************************** VALID URL ROUTING ******************************
 app.use((req, res, next) => {
@@ -47,30 +43,6 @@ app.get('/tile', (req, res) => {
 // board?id=0; id coming from browser client config for requestor verification
 app.get('/board', (req, res) => {
   res.send(new Buffer(game.getBoard(), 'binary'))
-})
-
-
-//******************** GROUP ROUTING *******************************************
-app.get('/group', (req, res) => {
-  // TODO: once tests are implemented remove this catch all
-  try {
-    res.send(JSON.stringify(Object.values(Group.all)))
-  } catch (e) {
-    console.error("fetching all groups broke...:\n", e)
-    res.send(JSON.stringify(group))
-  }
-})
-
-app.get('/group/:groupId', (req, res) => {
-    const group = Group.all[req.query.id]
-    res.send(JSON.stringify(group))
-})
-
-
-//******************** GROUP NETSTAT *******************************************
-app.get('/netstat', (req, res) => {
-  const netstat = Netstat.getNetstat(game)
-  res.send(JSON.stringify(netstat))
 })
 
 
