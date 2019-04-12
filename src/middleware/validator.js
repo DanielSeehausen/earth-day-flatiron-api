@@ -9,7 +9,7 @@ const validTile = require('./reqValidators/validTile.js')
 
 const routeValidators = {
   POST: {
-    '/tile': [validID, validTile, validColor],
+    '/tile': [validTile, validColor],
     __noSuchMethod__: [() => true] // might be 404 but that is handled normally.
   },
   GET: {

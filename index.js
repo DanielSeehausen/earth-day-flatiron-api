@@ -2,11 +2,8 @@ const express = require('express')
 const config = require('./config')
 
 const validator = require('./src/middleware/validator.js')
-const limiter = require('./src/middleware/rateLimiter.js')
 
-const Group = require('./src/app/group.js')
 const Game = require('./src/app/game.js')
-const Netstat = require('./src/app/netstat')
 const game = new Game()
 
 
@@ -14,9 +11,6 @@ const app = express()
 
 //*************************** VALIDATOR ****************************************
 app.use(validator)
-
-//************************** RATE LIMITER **************************************
-app.use(limiter)
 
 //***************************** VALID URL ROUTING ******************************
 app.use((req, res, next) => {
