@@ -18,15 +18,6 @@ test('properly updates the canvas with setTile and asserts that both views into 
   game.setTile({x: 0, y: 0, hexStr})
 
   expect(game.getTile({x: 0, y: 0, hexStr})).toBe(int32)
-  expect(game.canvas.int8View[0]).toBe(135)
-  expect(game.canvas.int8View[1]).toBe(254)
-  expect(game.canvas.int8View[2]).toBe(33)
-  expect(game.canvas.int8View[3]).toBe(255)
-
-  game.setTile({x: 1, y: 1, hexStr})
-  expect(game.getTile({x: 0, y: 0, hexStr})).toBe(int32)
-  expect(game.canvas.int8View[44]).toBe(135)
-  expect(game.canvas.int8View[45]).toBe(254)
-  expect(game.canvas.int8View[46]).toBe(33)
-  expect(game.canvas.int8View[47]).toBe(255)
+  expect(game.canvas.int32View[0]).toBe(4280417927)
+  expect(game.canvas.int32View[1]).toBe(4280427042)
 })
