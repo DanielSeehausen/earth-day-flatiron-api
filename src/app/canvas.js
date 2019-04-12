@@ -1,4 +1,5 @@
 const hex6CharToInt32 = require('./canvasHelpers/hex6CharToInt32.js')
+const config = require('./../../config.js')
 
 class Canvas {
 
@@ -7,7 +8,7 @@ class Canvas {
     this.width = colCount
     this.buffer = this._generateBuffer(this.height, this.width)
     this.int32View = new Uint32Array(this.buffer) // for easy writing
-    this.int32View.fill(hex6CharToInt32('222222'))
+    this.int32View.fill(hex6CharToInt32(config.STARTINGCOLOR))
   }
 
   setTile({x, y, hexStr}) {
